@@ -31,6 +31,10 @@ Here domain .attacker.com is owned by attacker and that redirects user to attack
 
 3) Often websites use outside services like Zendesk (in case of HackerOne) and these are landing pages between redirects, read WebHacking   handbook.
 
+4) Redirect via javascript  
+
+https://example.com/index.php?redirecturl=javascript:alert(document.domain)
+
 
 ## Redirects response code in HTTP requests  
 
@@ -42,3 +46,12 @@ Here domain .attacker.com is owned by attacker and that redirects user to attack
 307 - Temporary redirect  
 308 - Permanent Redirect  
 
+### Consequences
+
+1) Phishing
+2) XSS - if redirect allows use of data or javascript
+3) SSRF - maybe used to evade ssrf filters
+4) [CRLF](https://www.acunetix.com/websitesecurity/crlf-injection/) - If redirect parameter allows line break, try to perform response header splitting
+
+
+Long blog - https://www.neuralegion.com/blog/open-redirect-vulnerabilities/
